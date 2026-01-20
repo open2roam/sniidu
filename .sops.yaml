@@ -1,0 +1,17 @@
+keys:
+  - &user_onnimonni age1se1q2r6sc647nl3zp5cenuqclgj0e9czw43hq2y3amfyhv5yrnc326fusl30yv
+  - &user_onnimonni_backup age1gw5twz3nsemzt9aqxw76laej4j9erjks8g0gxgwjn3ljzk86ectqa8mqtv
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|yml|json|env|ini)$
+    key_groups:
+    - age:
+      - *user_onnimonni
+      - *user_onnimonni_backup
+
+  # These are the secrets which the machines have access to
+  - path_regex: secrets/shared/[^/]+\.(yaml|yml|json|env|ini)$
+    key_groups:
+    - age:
+      - *user_onnimonni
+      - *user_onnimonni_backup
