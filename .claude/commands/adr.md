@@ -11,7 +11,7 @@ Handle ADR operations based on the first argument ($1):
 ## Actions
 
 ### `new [title]` - Create new ADR
-1. Run `adr new $2 $3 $4 $5 $6 $7 $8 $9` to create the ADR file
+1. Run `EDITOR=true adr new $2 $3 $4 $5 $6 $7 $8 $9` to create the ADR file
 2. Read the created file path from output
 3. Edit the ADR to fill in proper content:
    - **Context**: Why this decision is needed, constraints, forces at play
