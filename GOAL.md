@@ -1,13 +1,12 @@
 ## Starting point
 
-* 2 domains in Cloudflare open2roam.com and opentoroam.com
-* 1 auction server in Hetzner
-* 1 storagebox in Hetzner 
-* We need to register sniidu.app in Cloudflare.
+* 2 domains in Cloudflare open2log.com and opentolog.com
+* 1 auction server in Hetzner robot
+* 1 bx11 1Tb storagebox in Hetzner cloud
 
 ## Principles
 
-* Use devenv.nix to manage the tools that you need, do not install them with homebrew or directly with curl
+* Use devenv.nix file to manage the tools that you need, do not install them with homebrew or directly with curl
 * You need to use terraform and sops to manage the cloud resources.
 * You need to use NixOS to manage the server.
 * If you will need to build cloudflare workers built them with Rust.
@@ -42,6 +41,12 @@
 * For now don't allow users to directly join. They can create a user and sign up for a waiting list and when we have tested everything and enough capacity they will get a notification that they can start using the app.
 * You want to explore more grocery stores first in Finland, then in Nordics and Baltics and then the rest of the Europe. Eventually this should cover the whole world.
 * Later on build ability to add/scan fuel prices from the stations.
+
+## Opentofu
+### Hetzner auction servers
+We have created a custom provider for opentofu to manage hetzner hrobot resources. See more in: https://registry.terraform.io/providers/midwork-finds-jobs/hrobot/latest/docs
+
+If you can't do something you want you can create issues in: https://github.com/midwork-finds-jobs/terraform-provider-hrobot
 
 ## DuckDB
 Use the following duckdb community extensions. We manage the source code for each of these and you can create issues in their github repositories if they are not enough for what you are building.
