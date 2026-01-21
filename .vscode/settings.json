@@ -1,0 +1,41 @@
+{
+    // Elixir LSP from: https://github.com/elixir-lang/expert/
+    "[elixir]": {
+        "editor.defaultFormatter": "lexical-lsp.lexical"
+    },
+    "lexical.server.releasePathOverride": "${workspaceFolder}/.bin/expert",
+    "lexical.trace.server": "messages",
+    "lexical.server.projectDir": "services/midwork",
+    // We will use these custom file associations to disable co-pilot
+    // See more in: https://stackoverflow.com/a/77908836/1337062
+    "files.associations": {
+        // If repo would contain secrets in .env file it's better to ignore it
+        ".env*": "plaintext",
+        // SOPS creates unencrypted temporary files here
+        "/var/folders/*/**": "plaintext",
+    },
+    // This setting can't be altered here and
+    // needs to be copied directly into user settings
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+    },
+    // Much cleaner explorer
+    "explorer.excludeGitIgnore": true,
+    //
+    "files.exclude": {
+        // opentofu
+        "infra/*.tfstate*": true,
+        "infra/.terraform*": true,
+        // files which we don't really need to edit
+        ".editorconfig": true,
+        ".envrc": true,
+        ".claude": true,
+        ".agent": true,
+        // devenv & nix
+        "devenv.lock": true,
+        "flake.lock": true,
+        // Debug logs for expert
+        ".expert": true
+    }
+}
