@@ -35,6 +35,7 @@
           ../modules/phoenix.nix
           ../modules/gluetun.nix
           ../modules/litestream.nix
+          ../modules/crawler.nix
         ];
       };
     };

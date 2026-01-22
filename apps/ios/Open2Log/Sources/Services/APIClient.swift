@@ -55,6 +55,39 @@ class APIClient {
         return try await post("/prices", body: request)
     }
 
+    func submitPrice(
+        ean: String?,
+        productName: String?,
+        priceCents: Int,
+        shopGersId: String,
+        scannedAt: Date,
+        barcodeImageUrl: String?,
+        priceImageUrl: String?,
+        productImageUrl: String?
+    ) async throws {
+        let body: [String: Any?] = [
+            "ean": ean,
+            "product_name": productName,
+            "price_cents": priceCents,
+            "shop_gers_id": shopGersId,
+            "scanned_at": ISO8601DateFormatter().string(from: scannedAt),
+            "barcode_image_url": barcodeImageUrl,
+            "price_image_url": priceImageUrl,
+            "product_image_url": productImageUrl
+        ]
+
+        var request = URLRequest(url: baseURL.appendingPathComponent("/prices"))
+        request.httpMethod = "POST"
+        request.httpBody = try JSONSerialization.data(withJSONObject: body.compactMapValues { $0 })
+        addHeaders(to: &request)
+
+        let (_, response) = try await session.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw APIError.invalidResponse
+        }
+    }
+
     func getUploadUrl(filename: String, contentType: String, uploadType: String) async throws -> UploadUrlResponse {
         return try await post("/prices/upload_url", body: [
             "filename": filename,

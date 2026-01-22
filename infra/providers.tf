@@ -5,15 +5,15 @@ terraform {
       version = "~> 4.0"
     }
     hrobot = {
-      source = "midwork-finds-jobs/hrobot"
+      source  = "midwork-finds-jobs/hrobot"
       version = "~> 0.1.0"
     }
     hcloud = {
-      source = "hashicorp/hcloud"
+      source  = "hashicorp/hcloud"
       version = "~> 1.59"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "~> 3.0"
     }
   }

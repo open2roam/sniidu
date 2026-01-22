@@ -29,8 +29,8 @@ resource "hcloud_storage_box" "open2log" {
 
   labels = {
     visibility = "public",
-    contains = "ducklake",
-    env  = "production"
+    contains   = "ducklake",
+    env        = "production"
   }
 
   access_settings = {
@@ -38,8 +38,8 @@ resource "hcloud_storage_box" "open2log" {
     ssh_enabled          = true
     webdav_enabled       = true
 
-    samba_enabled        = false
-    zfs_enabled          = false
+    samba_enabled = false
+    zfs_enabled   = false
   }
 
   # You can set the initial SSH Keys as an attribute on the resource, but these
@@ -61,5 +61,20 @@ resource "hcloud_storage_box" "open2log" {
 
 output "ip" {
   description = "Main ipv4 address of the server"
-  value = hrobot_server.main.public_net.ipv4
+  value       = hrobot_server.main.public_net.ipv4
+}
+
+output "storagebox_id" {
+  description = "Storage Box ID"
+  value       = hcloud_storage_box.open2log.id
+}
+
+output "storagebox_server" {
+  description = "Storage Box server (username for WebDAV)"
+  value       = hcloud_storage_box.open2log.server
+}
+
+output "storagebox_webdav_url" {
+  description = "WebDAV URL for the storage box"
+  value       = "https://${hcloud_storage_box.open2log.server}.your-storagebox.de"
 }

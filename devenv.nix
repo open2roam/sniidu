@@ -43,8 +43,8 @@ rec {
     nixos-rebuild
     nixos-anywhere
 
-    # Data processing
-    duckdb
+    # Data processing - use unstable for latest version (needed for community extensions)
+    pkgs-unstable.duckdb
 
     # Cloudflare Workers
     #wrangler

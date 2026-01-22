@@ -20,6 +20,11 @@ class ImageUploader {
     }
 
     /// Upload image data and return the public URL
+    func uploadImage(_ data: Data, type: UploadType) async throws -> String {
+        return try await upload(imageData: data, type: type)
+    }
+
+    /// Upload image data and return the public URL
     func upload(imageData: Data, type: UploadType) async throws -> String {
         // Determine content type based on data
         let contentType = detectContentType(imageData)

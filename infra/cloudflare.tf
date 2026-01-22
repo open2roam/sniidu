@@ -32,7 +32,7 @@ resource "cloudflare_d1_database" "shopping_lists" {
 }
 
 # DNS records for main domain - proxied through Cloudflare
-resource "cloudflare_dns_record" "open2log_root" {
+resource "cloudflare_record" "open2log_root" {
   zone_id = data.cloudflare_zone.open2log.id
   name    = "@"
   content = hrobot_server.main.public_net.ipv4
@@ -41,7 +41,7 @@ resource "cloudflare_dns_record" "open2log_root" {
   ttl     = 1 # Auto TTL when proxied
 }
 
-resource "cloudflare_dns_record" "open2log_www" {
+resource "cloudflare_record" "open2log_www" {
   zone_id = data.cloudflare_zone.open2log.id
   name    = "www"
   content = hrobot_server.main.public_net.ipv4
@@ -51,7 +51,7 @@ resource "cloudflare_dns_record" "open2log_www" {
 }
 
 # API subdomain
-resource "cloudflare_dns_record" "open2log_api" {
+resource "cloudflare_record" "open2log_api" {
   zone_id = data.cloudflare_zone.open2log.id
   name    = "api"
   content = hrobot_server.main.public_net.ipv4
@@ -61,7 +61,7 @@ resource "cloudflare_dns_record" "open2log_api" {
 }
 
 # Redirect opentolog.com to open2log.com
-resource "cloudflare_dns_record" "opentolog_root" {
+resource "cloudflare_record" "opentolog_root" {
   zone_id = data.cloudflare_zone.opentolog.id
   name    = "@"
   content = "open2log.com"
@@ -104,8 +104,8 @@ resource "cloudflare_ruleset" "rate_limiting" {
   rules {
     action = "block"
     ratelimit {
-      characteristics = ["ip.src"]
-      period          = 60
+      characteristics     = ["ip.src"]
+      period              = 60
       requests_per_period = 10
       mitigation_timeout  = 600
     }
@@ -118,8 +118,8 @@ resource "cloudflare_ruleset" "rate_limiting" {
   rules {
     action = "block"
     ratelimit {
-      characteristics = ["ip.src"]
-      period          = 3600
+      characteristics     = ["ip.src"]
+      period              = 3600
       requests_per_period = 3
       mitigation_timeout  = 3600
     }
@@ -132,8 +132,8 @@ resource "cloudflare_ruleset" "rate_limiting" {
   rules {
     action = "block"
     ratelimit {
-      characteristics = ["ip.src"]
-      period          = 60
+      characteristics     = ["ip.src"]
+      period              = 60
       requests_per_period = 100
       mitigation_timeout  = 60
     }
